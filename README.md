@@ -31,19 +31,27 @@ NUSTBites is a **responsive**, **Bootstrap-based** static web app that:
 /project-root
 │
 ├── public/
-│ ├── logos/ → KFC.svg and other static images
-│ ├── kfc menu.csv → Menu data (CSV format)
-│ └── favicon.ico
+│   ├── logos/ → static SVGs
+│   ├── screenshots/ → Screenshots of the app
+│   │   ├── 01.png
+│   │   ├── 02.png
+│   │   ├── 03.png
+│   │   └── 04.png
+│   ├── kfc menu.csv → Dummy Menu data (CSV format)
+│   ├── favicon.ico → Website favicon
+│   └── logo-main-light.svg → Main logo
 │
-├── css/
-│ ├── auth.css → Auth page styling (if used)
-│ └── main.css → Global styles (colors, spacing)
-│
-├── js/
-│ └── menu.js → JS script to load and render menu
+├── public/css/
+│   ├── generalStyle.css → General page styles
+│   ├── auth.css → Auth page styling
+│   ├── order-dashboard.css → Order dashboard styles
+│   └── specificStyle.css → Page-specific styles
 │
 ├── index.html → Landing page (optional)
 ├── menu.html → Main menu page
+├── auth.html → Authentication page
+├── order-dashboard.html → Dashboard for orders
+├── otp.html → OTP verification page
 └── README.md → You're reading it 😄
 ```
 
