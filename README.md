@@ -73,7 +73,7 @@ NUSTBites is a **responsive**, **Bootstrap-based** static web app that:
 
 ## 📸 Preview
 
-![NUSTBites Preview](public/screenshots/Screenshot 2025-04-11 at 2.26.34 AM.png)
+![NUSTBites Preview](public/screenshots/01.png)
 
 ## 🛠️ Technologies Used
 
