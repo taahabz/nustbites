@@ -20,10 +20,10 @@ NUSTBites is a **responsive**, **Bootstrap-based** static web app that:
 
 ## 📸 Preview
 
-(public/screenshots/01.png)
-(public/screenshots/02.png)
-(public/screenshots/03.png)
-(public/screenshots/04.png)
+![Preview 1](public/screenshots/01.png)
+![Preview 2](public/screenshots/02.png)
+![Preview 3](public/screenshots/03.png)
+![Preview 4](public/screenshots/04.png)
 
 ## 📁 File Structure
 
