@@ -18,6 +18,13 @@ NUSTBites is a **responsive**, **Bootstrap-based** static web app that:
 
 ---
 
+## 📸 Preview
+
+(public/screenshots/01.png)
+(public/screenshots/02.png)
+(public/screenshots/03.png)
+(public/screenshots/04.png)
+
 ## 📁 File Structure
 
 ```
@@ -68,12 +75,6 @@ NUSTBites is a **responsive**, **Bootstrap-based** static web app that:
   - Primary green colored
   - Bold
   - Margin added except for first one
-
----
-
-## 📸 Preview
-
-![NUSTBites Preview](public/screenshots/01.png)
 
 ## 🛠️ Technologies Used
 
