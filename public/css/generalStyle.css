@@ -1,0 +1,601 @@
+:root {
+  --footer-height: 3rem;
+  --page-top: 3.75rem;
+  --dynamic-padding-top: var(--page-top);
+  --body-margin-right: 0;
+  --body-margin-left: 0;
+  --shadow-color: rgba(50, 50, 50, 0.3);
+  --outline-color: #888888;
+  --accent-color: <%= accentColor %>;
+  --accent-color-hover: <%= accentColorHover %>;
+  --btn-font-family: "Poppins", sans-serif;
+}
+/* Light theme variables */
+[data-theme="light"] {
+  --primary-background-color: #ededed;
+  --secondary-background-color: #e1e1e1;
+  --tertiary-background-color: #cccccc;
+  --text-color-a: #333;
+  --text-color-b: black;
+  --text-color-c: #666;
+  --border-color: #ccc;
+  --modal-background: #fefefe;
+  --shadow-color-header: rgba(0, 0, 0, 0.1);
+  --frosted-background-color: rgba(238, 238, 238, 0.6);
+  --sidenav-button-color: rgba(0, 0, 0, 0.1);
+
+  --modal-background-secondary: rgba(0, 0, 0, 0.05);
+  --modal-border-secondary: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  --primary-background-color: #121212;
+  --secondary-background-color: #1e1e1e;
+  --tertiary-background-color: #333333;
+  --text-color-a: #e0e0e0;
+  --text-color-b: white;
+  --text-color-c: #a1a1a1;
+  --border-color: #333;
+  --modal-background: #3f3f3f;
+  --shadow-color-header: rgba(255, 255, 255, 0.15);
+  --frosted-background-color: rgba(17, 17, 17, 0.6);
+  --sidenav-button-color: rgba(255, 255, 255, 0.2);
+  --modal-background-secondary: rgba(255, 255, 255, 0.05);
+  --modal-border-secondary: rgba(255, 255, 255, 0.05);
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  justify-content: space-between; /* Push footer to the bottom */
+  background-color: var(--primary-background-color);
+  color: var(--text-color-a);
+  padding-top: var(--dynamic-padding-top);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px; /* Optional: limit the width */
+}
+/* Laptops and small desktop screens (90% width) */
+@media (min-width: 768px) and (max-width: 1440px) {
+  body {
+    max-width: 90%;
+  }
+}
+/* Larger desktop screens and monitors (70% width) */
+@media (min-width: 1441px) {
+  body {
+    max-width: 70%;
+  }
+}
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+.header-top-container {
+  background-color: var(--primary-background-color);
+  position: relative;
+  z-index: 1001;
+  border-bottom: 1px solid var(--shadow-color-header);
+}
+/* Default styling for small screens, including mobile */
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  height: var(--page-top);
+  margin: 0 auto;
+}
+/* Laptops and small desktop screens (90% width) */
+@media (min-width: 768px) and (max-width: 1440px) {
+  .header-top,
+  .search-container {
+    max-width: 90%;
+  }
+}
+/* Larger desktop screens and monitors (70% width) */
+@media (min-width: 1441px) {
+  .header-top,
+  .search-container {
+    max-width: 70%;
+  }
+}
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+/* Hide the light logo if background is dark */
+.logo-light {
+  display: none;
+}
+.logo-dark {
+  display: block;
+}
+/* Adjust based on background color */
+[data-theme="dark"] .logo-light {
+  display: none;
+}
+[data-theme="dark"] .logo-dark {
+  display: block;
+}
+[data-theme="light"] .logo-light {
+  display: block;
+}
+[data-theme="light"] .logo-dark {
+  display: none;
+}
+.logo-light,
+.logo-dark {
+  cursor: pointer;
+}
+
+footer {
+  border-top: 1px solid var(--shadow-color-header);
+  position: relative;
+  height: 3rem;
+  width: 100vw;
+  left: calc(-1 * var(--body-margin-left));
+}
+
+.footer {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center horizontally */
+  height: 100%;
+  white-space: nowrap;
+  color: var(--text-color-c);
+  font-size: small;
+}
+
+.hamburger {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1001;
+  top: 0;
+  left: 0;
+  background-color: var(--frosted-background-color);
+  backdrop-filter: blur(0.5rem); /* Blur effect for glass-like effect */
+  transition: 0.5s; /* Smooth transition for opening/closing */
+  box-shadow: var(--shadow-color);
+  overflow-x: hidden; /* No horizontal scroll */
+  padding-top: var(--page-top); /* Adjust padding to avoid header overlap */
+}
+.closebtn {
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+  font-size: 2.25rem;
+  margin-left: 3rem;
+}
+.closebtn:hover,
+.closebtn:focus {
+  color: var(--accent-color-hover);
+  text-decoration: none;
+  cursor: pointer;
+}
+#main {
+  transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition for both transform and opacity */
+  min-height: calc(100vh - var(--footer-height));
+  padding-bottom: var(--page-top);
+}
+
+/* When the sidenav is open, move the main content off-screen and dim it */
+#main.shifted {
+  opacity: 0.5;
+  pointer-events: none; /* Disable user interactions with the main content */
+}
+
+.sidenav.open {
+  width: 15.5rem; /* Width of the sidenav when opened */
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 0.5rem;
+  }
+  .sidenav a {
+    font-size: 1.125rem;
+  }
+}
+/* Apply button styles to label */
+button,
+label[for="paymentScreenshot"] {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.375rem 0.625rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  border-radius: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color 0.3s;
+  display: inline-block; /* Ensures label behaves like a button */
+  text-align: center;
+  font-family: var(--btn-font-family);
+}
+
+button:hover,
+label[for="paymentScreenshot"]:hover {
+  opacity: 85%;
+  cursor: pointer;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scale(0.98);
+}
+
+button:disabled,
+label[for="paymentScreenshot"]:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+/* Hide the actual file input */
+label[for="paymentScreenshot"] input[type="file"] {
+  display: none;
+}
+
+.account-button,
+.sign-in-button {
+  background-color: #11734b;
+  font-weight: bold;
+}
+
+.sidenav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  padding: 1.25rem;
+  height: calc(95% - var(--page-top));
+}
+.sidenav-container h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color-a);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  z-index: 1;
+  border-bottom: 0.125rem solid var(--sidenav-button-color); /* Adds a light border/line under the heading */
+  padding-bottom: 0.625rem; /* Adds spacing between text and the border */
+}
+
+.sidenav-container ul {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0;
+  width: 100%;
+}
+.sidenav-container ul li {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+/* Modern links */
+.sidenav-container ul li a {
+  text-decoration: none;
+  color: var(--text-color-a);
+  font-size: 1.1rem;
+  padding: 0.625rem 1rem;
+  border-radius: 0.25rem;
+  display: block;
+  background-color: var(--sidenav-button-color);
+  transition: background-color 0.3s ease;
+}
+.sidenav-container ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.sidenav-container ul li a[href*="restaurant=1"]:hover {
+  background-color: #e4002b; /* KFC hover color */
+  color: white;
+}
+.sidenav-container ul li a[href*="restaurant=2"]:hover {
+  background-color: rgb(0, 15, 150); /* Layers hover color */
+  color: white;
+}
+.sidenav-container ul li a[href*="restaurant=3"]:hover {
+  background-color: #9f844f; /* Crumble hover color */
+  color: white;
+}
+.sidenav-container ul li a[href*="restaurant=4"]:hover {
+  background-color: #073c52; /* Crumble hover color */
+  color: white;
+}
+
+/* Push the footer to the bottom */
+.sidenav-footer {
+  margin-top: auto; /* Ensures the footer section stays at the bottom */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+.special-button {
+  text-decoration: none;
+  text-align: center;
+  font-size: 1.1rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  padding: 0.5rem 1.25rem;
+}
+/* FAQ Button Styling */
+.faq-button {
+  background-color: #3a6ea5;
+  color: white;
+}
+.faq-button:hover {
+  background-color: #2a5275;
+}
+
+/* About Us Button Styling */
+.about-button {
+  background-color: #1db954;
+  color: white;
+}
+
+.about-button:hover {
+  background-color: var(--about-button-hover-color, #15803d);
+}
+.closebtn {
+  padding: 0.5rem 0.5rem 0.5rem 2rem;
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+  position: absolute;
+  top: 0;
+  right: 1.5rem;
+  font-size: 2.25rem;
+  margin-left: 3rem;
+}
+
+.theme-toggle-switch {
+  text-decoration: none;
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  margin-top: 1.25rem;
+  margin-right: 3rem;
+  display: inline-block;
+  width: 3.75rem;
+  height: 1.875rem;
+}
+.theme-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+.theme-toggle-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #3f3f3f; /* Default background (light mode) */
+  border-radius: 3rem;
+  transition: 0.4s;
+}
+
+.theme-toggle-switch .slider:before {
+  content: "";
+  position: absolute;
+  left: 0.25rem;
+  top: 0.125rem;
+  width: 1.625rem;
+  height: 1.625rem;
+  background-color: #121212; /* Circle color (light mode) */
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.theme-toggle-switch input:checked + .slider {
+  background-color: white; /* Background color for dark mode */
+}
+
+.theme-toggle-switch input:checked + .slider:before {
+  transform: translateX(1.125rem); /* Move the circle to the right */
+  background-color: white; /* Circle color for dark mode */
+}
+
+.theme-toggle-switch .icon-sun,
+.theme-toggle-switch .icon-moon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  transition: 0.4s;
+}
+
+.theme-toggle-switch .icon-sun {
+  left: 0.625rem;
+  color: white; /* Sun icon color in light mode */
+}
+
+.theme-toggle-switch .icon-moon {
+  right: 0.625rem;
+  color: black; /* Moon icon color in dark mode */
+  opacity: 0; /* Hide moon icon in light mode */
+}
+
+.theme-toggle-switch input:checked + .slider .icon-sun {
+  opacity: 0; /* Hide sun icon in dark mode */
+}
+
+.theme-toggle-switch input:checked + .slider .icon-moon {
+  opacity: 1; /* Show moon icon in dark mode */
+  color: black; /* Moon icon color in dark mode */
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: flex-end;
+  padding: 0 1.25rem;
+  transition: all 0.3s ease;
+  padding-top: 0.125rem;
+}
+.search-container.onSearch {
+  padding-top: 0.625rem;
+}
+
+#searchIcon,
+#clearButton {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  color: var(--text-color-a);
+  background-color: var(--tertiary-background-color);
+  border-radius: 50%;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+#clearButton {
+  color: var(--text-color-c);
+  background-color: transparent;
+  display: none;
+  padding: unset;
+}
+
+#menuSearch {
+  flex: 0;
+  padding: 0.4375rem;
+  padding-left: 0.625rem;
+  padding-right: 2rem;
+  font-size: 0.875rem;
+  border-radius: 1.875rem;
+  width: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+  position: absolute;
+  z-index: 1;
+  background-color: var(--secondary-background-color);
+  color: var(--text-color-b);
+  margin: unset;
+}
+
+.search-container.expanded #menuSearch {
+  width: 25vw;
+  opacity: 1;
+  z-index: 2;
+  border: 1.5px solid var(--tertiary-background-color);
+  outline: none;
+  resize: none;
+}
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  .search-container.expanded #menuSearch {
+    width: 50%; /* Adjust to 50% on smaller screens */
+  }
+}
+
+.search-container.expanded #searchIcon {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+
+.search-container.expanded #clearButton {
+  display: block;
+  opacity: 1; /* Ensure clear button fades in smoothly */
+  transition: opacity 0.3s ease;
+}
+
+/* Ensure search bar returns smoothly to its original state when collapsed */
+.search-container:not(.expanded) #menuSearch {
+  opacity: 0;
+  width: 0;
+  transition: opacity 0.3s ease, width 0.3s ease; /* Ensure width collapses smoothly */
+}
+
+.content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  flex: 1; /* Take the remaining space between header and footer */
+  position: relative;
+  top: -1rem; /* Adjust for the fixed header */
+}
+
+input {
+  padding: 0.625rem;
+  margin-bottom: 1rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--tertiary-background-color);
+  font-size: 1rem;
+  box-sizing: border-box;
+  color: var(--text-color-b);
+  width: 100%;
+  background-color: var(--tertiary-background-color);
+}
+input:focus {
+  outline: 1px solid var(--outline-color);
+}
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.toggle-password {
+  position: absolute;
+  right: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text-color-c);
+  height: 2rem;
+}
+.toggle-password span {
+  font-size: 1.2rem;
+}
+label {
+  display: block;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-background-color);
+  border-radius: 0.875rem;
+  padding: 1rem;
+  box-shadow: 0px 0px 12px var(--shadow-color);
+}
+.toast-custom-lower {
+  top: var(--dynamic-padding-top);
+  right: 15px; /* Maintain alignment with the top-right */
+}
