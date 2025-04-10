@@ -73,7 +73,7 @@ NUSTBites is a **responsive**, **Bootstrap-based** static web app that:
 
 ## 📸 Preview
 
-![NUSTBites Preview](https://via.placeholder.com/800x400?text=NUSTBites+Preview)
+![NUSTBites Preview](public/screenshots/Screenshot 2025-04-11 at 2.26.34 AM.png)
 
 ## 🛠️ Technologies Used
 
@@ -109,7 +109,3 @@ Created by:
 - Rehan Hussain
 
 BSCS-13 E – Contributions welcome!
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
